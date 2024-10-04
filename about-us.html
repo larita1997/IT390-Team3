@@ -3,6 +3,14 @@
     <head>
         <title> About the Project </title>
         <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
+
+
+        
+        <!--Jillian added jquery ui-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.0/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.0/jquery-ui.min.js"></script>
+
         <style>
         body {
             font-family: 'Libre Baskerville';
@@ -25,31 +33,55 @@
         .container h1 {
         margin-bottom: 20px;
         }
+        
+        /*Jillian added CSS for anything in the accordion master detail*/
+        .accordion-container {
+            font-family: 'Libre Baskerville';
+            margin: 0;
+            background-color: #f0f0f0;
+        }
         </style>
+
+        <!--Jillian added jquery ui for the Master Detail as an accordion-->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#accordion-control").accordion({
+                    collapsible: true
+                });
+            });
+        </script>
     </head>
 
     <div class="container">
         <h1> About the Project: </h1>
-        <h3> Team Members </h3>
-            <ul>
-                <li> Muhammad Adnan </li>
-                <li> Sam Fitzhugh (Project Owner) </li>
-                <li> Allen Jeong </li>
-                <li> Brandon Luong </li>
-                <li> Luis Rosell </li>
-                <li> Jillean Rosseau </li>
-            </ul>
-        <h3> Project Description </h3>
-            <p> This project is created for the IT 390-001 (Rapid Development of Scalable Cloud Applications) class in the fall 2024 semester. 
-                    Teams are tasked with creating a web application following certain criteria. Our group is making a shopping list app
-                    that can be used by multiple people in a household to add and remove items from the same list as well as label and sort
-                    the list by where the item should be purchased as well as how urgent the item is needed. </p>
-        <h3> Application Features </h3>
-            <p> Primary features in our application are as follows: </p>
-            <ol>
-                <li> Mliti-user functionality </li>
-                <li> Item tags (location, urgency, etc) </li>
-                <li> Filtering/sorting by tags </li>
-            </ol>
+        <div id="accordion-control">
+            <h3 class="accordion-container"> Team Members </h3>
+            <div class="accordion-container">
+                <ul>
+                    <li> Muhammad Adnan </li>
+                    <li> Sam Fitzhugh (Project Owner) </li>
+                    <li> Allen Jeong </li>
+                    <li> Brandon Luong </li>
+                    <li> Luis Rosell </li>
+                    <li> Jillean Rosseau </li>
+                </ul>
+            </div>
+        <h3 class="accordion-container"> Project Description </h3>
+            <div class="accordion-container">
+                <p> This project is created for the IT 390-001 (Rapid Development of Scalable Cloud Applications) class in the fall 2024 semester. 
+                        Teams are tasked with creating a web application following certain criteria. Our group is making a shopping list app
+                        that can be used by multiple people in a household to add and remove items from the same list as well as label and sort
+                        the list by where the item should be purchased as well as how urgent the item is needed. </p>
+            </div>
+        <h3 class="accordion-container"> Application Features </h3>
+            <div class="accordion-container">
+                <p> Primary features in our application are as follows: </p>
+                <ol>
+                    <li> Mliti-user functionality </li>
+                    <li> Item tags (location, urgency, etc) </li>
+                    <li> Filtering/sorting by tags </li>
+                </ol>
+            </div>
+        </div>
     </div>
 </html>
