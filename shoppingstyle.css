@@ -7,6 +7,13 @@
         margin: 0;
         background-color: #f0f0f0;
     }
+    .footer{
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+    }
     .container {
         background-color: #fff;
         padding: 20px;
@@ -66,4 +73,11 @@
         cursor: pointer;
         border-radius: 4px;
         padding: 5px;
+    }
+    p.field-wrapper input{
+      float: right;
+    }
+    p.required-field label::after{
+      content: "*";
+      color: red;
     }
