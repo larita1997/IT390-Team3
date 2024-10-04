@@ -82,7 +82,7 @@
     <form>
       <label for="item">Item:</label><br>
       <input type="text" id="item" name="item" placeholder="Enter item" required><br>
-      
+
       <label for="category">Category:</label><br>
       <select id="category" name="category" required>
         <option value="Fruits">Fruits</option>
@@ -105,6 +105,21 @@
 
     <p><button onclick="addItem()">Add Item</button></p>
     <p><button onclick="clearList()">Clear All</button></p>
+
+    <!--Jillian's buttons and input-->
+    <!--User can pick to filter by Category, Store, or Urgency-->
+    <label>Filter By:</label>
+    <select id="filterchoices">
+      <option>Category</option>
+      <option>Store</option>
+      <option>Urgency</option>
+    </select>
+
+    <!--User can type in what they want to filter by. For example: Fruits-->
+    <input type="text" id="filtertext" placeholder="Enter item" required>
+
+    <!--Button calls the filter() function-->
+    <p><button onclick="filter(filterchoices.value, filtertext.value)">Filter</button></p>
 
     <div class="item-list">
       <h2>Your List:</h2>
@@ -166,7 +181,79 @@
       list = [];
       updateList();
     }
+
+    //Jillian's filtering
+    //filterchoices is Category, Store, or Urgency
+    //filtertext is what the user enters as text input. Example: Fruits
+    function filter(filterchoices, filtertext) {
+      //Reused parts of updatelist function throughout this function
+      const groceryList = document.getElementById("grocerylist");
+      if (list.length === 0) {
+        groceryList.innerHTML = 'You have no items. Start adding!';
+        return;
+      }
+      groceryList.innerHTML = "";
+
+      // Determines what the user is filtering by (Category, Store, or Urgency)
+      switch(filterchoices) {
+        case "Category":
+            list.forEach((listItem, index) => {
+              const li = document.createElement("li");
+
+                // If the category of this item = what the user typed in
+                if (listItem.category.toUpperCase() === filtertext.toUpperCase()){
+                  li.innerHTML = `
+                    <div class="details">
+                      <strong>${listItem.item}</strong> (${listItem.category})<br>
+                      Store: ${listItem.store}<br>
+                      Urgency: ${listItem.urgency}
+                    </div>
+                    <button class="delete-btn" onclick="deleteItem(${index})">Delete</button>
+                  `;
+                  groceryList.appendChild(li);
+                  }
+            });
+        break;
+
+        case "Store":
+          list.forEach((listItem, index) => {
+                const li = document.createElement("li");
+
+                  // If the store of this item = what the user typed in
+                  if (listItem.store.toUpperCase() === filtertext.toUpperCase()){
+                    li.innerHTML = `
+                      <div class="details">
+                        <strong>${listItem.item}</strong> (${listItem.category})<br>
+                        Store: ${listItem.store}<br>
+                        Urgency: ${listItem.urgency}
+                      </div>
+                      <button class="delete-btn" onclick="deleteItem(${index})">Delete</button>
+                    `;
+                    groceryList.appendChild(li);
+                    }
+              });
+        break;
+
+        case "Urgency":
+          list.forEach((listItem, index) => {
+                const li = document.createElement("li");
+
+                  // If the urgency of this item = what the user typed in
+                  if (listItem.urgency.toUpperCase() === filtertext.toUpperCase()){
+                    li.innerHTML = `
+                      <div class="details">
+                        <strong>${listItem.item}</strong> (${listItem.category})<br>
+                        Store: ${listItem.store}<br>
+                        Urgency: ${listItem.urgency}
+                      </div>
+                      <button class="delete-btn" onclick="deleteItem(${index})">Delete</button>
+                    `;
+                    groceryList.appendChild(li);
+                    }
+              });
+        break;
+      }
+    }
   </script>
 </body>
 </html>
-
