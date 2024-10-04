@@ -90,7 +90,16 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="signin-container">
+    <h1>Sign In</h1>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="signIn()">Sign In</button>
+    <p><button onclick="signUp()">Sign Up</button></p>
+    <p id="signin-error" style="color: red;" class="hidden">Invalid login details.</p>
+  </div>
+  
+  <div class="container hidden" id="shopping-container">
     <h1>Shopping List</h1>
 
     <form>
@@ -147,7 +156,42 @@
   </div>
 
   <script>
+    let users = [{ username: 'admin', password: 'password' }];
     let list = [];
+    let currentUser = null;
+
+    function signIn() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const user = users.find(u => u.username === username && u.password === password);
+      
+      if (user) {
+        currentUser = user;
+        document.getElementById('signin-container').classList.add('hidden');
+        document.getElementById('shopping-container').classList.remove('hidden');
+        document.getElementById('signin-error').classList.add('hidden');
+      } else {
+        document.getElementById('signin-error').classList.remove('hidden');
+      }
+    }
+
+    function signUp() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (username && password) {
+        users.push({ username, password });
+        alert('Account created successfully!');
+      } else {
+        alert('Please enter a valid username and password.');
+      }
+    }
+
+    function logOut() {
+      currentUser = null;
+      document.getElementById('signin-container').classList.remove('hidden');
+      document.getElementById('shopping-container').classList.add('hidden');
+    }
 
     function addItem() {
       const item = document.getElementById("item").value;
